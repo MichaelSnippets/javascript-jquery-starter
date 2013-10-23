@@ -70,8 +70,10 @@
                 <% for(var i=0; i<docs.length; i++) { %>
                     <li>
                         <a href="detail.html?id=<%= docs[i].id %>&slug=<%= docs[i].slug %><%= ctx.maybeRefParam %>">
-                            <%= docs[i].slug %>
+                            <%= docs[i].getText('article.title') %>
                         </a>
+                        <br>
+                        <img src="<%= docs[i].getImageView('article.illustration', 'icon').url %>" alt="placeholder+image">
                     </li>
                 <% } %>
             </script>
@@ -93,6 +95,7 @@
                 Helpers.withPrismic(function(ctx) {
 
                     ctx.api.form("everything").ref(ctx.ref).submit(function(docs) {
+                        console.log('log', docs);
 
                         // Feed the templates
                         $('header, form, #title, #list, footer').render({
@@ -103,6 +106,7 @@
                     });
 
                 });
+
 
             });
         </script>
